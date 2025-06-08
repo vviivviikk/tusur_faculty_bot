@@ -17,7 +17,6 @@ async def cancel_handler(message: Message, state: FSMContext):
             "Действие отменено. Возвращаемся в главное меню.",
             reply_markup=get_main_menu()
         )
-    # Перенаправление в разделы
     if message.text == "👤 Профиль":
         from bot.handlers.profile import show_profile
         await show_profile(message)

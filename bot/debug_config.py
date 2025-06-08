@@ -47,13 +47,11 @@ else:
         print(f"❌ Ошибка при чтении .env файла: {e}")
 
 print("\n🔍 Проверка загрузки переменных окружения...")
-# Проверяем python-dotenv
 try:
     from dotenv import load_dotenv
 
     print("✅ Библиотека python-dotenv установлена")
 
-    # Пробуем загрузить с dotenv
     load_dotenv()
     token_from_env = os.getenv('BOT_TOKEN')
     if token_from_env:
@@ -66,7 +64,6 @@ except ImportError:
     print("Установите ее командой: pip install python-dotenv")
 
 print("\n🔍 Проверка структуры проекта...")
-# Проверяем структуру проекта
 required_files = [
     'main.py',
     'requirements.txt',
@@ -84,7 +81,6 @@ for file in required_files:
         print(f"❌ {file} - не найден")
 
 print("\n🔍 Проверка импорта модулей...")
-# Проверяем необходимые модули
 required_modules = ['aiogram', 'dotenv', 'asyncio', 'requests']
 for module in required_modules:
     try:
@@ -101,7 +97,6 @@ for module in required_modules:
         print(f"❌ {module} - НЕ УСТАНОВЛЕН: {e}")
 
 print("\n🔍 Проверка конфигурации бота...")
-# Проверяем конфигурацию бота
 try:
     from bot.config import Config
 
@@ -118,7 +113,6 @@ except Exception as e:
     print(f"❌ Ошибка при импорте Config: {e}")
 
 print("\n🔍 Проверка токена через Telegram API...")
-# Тестируем токен через Telegram API
 token_to_check = None
 
 try:
@@ -150,7 +144,6 @@ else:
     except Exception as e:
         print(f"❌ Ошибка при проверке токена через API: {e}")
 
-# Итоговый отчет
 print("\n📊 ИТОГОВЫЙ ОТЧЕТ:")
 print(f"Файл .env: {'✅' if os.path.exists('.env') else '❌'}")
 
@@ -203,7 +196,6 @@ if token_to_check:
         pass
 print(f"Telegram API: {'✅' if has_valid_token else '❌'}")
 
-# Заключение
 if all([
     os.path.exists('.env'),
     dotenv_available,

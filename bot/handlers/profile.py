@@ -12,7 +12,6 @@ async def show_profile(message: Message):
         await message.answer("Профиль не найден. Сначала завершите регистрацию.")
         return
 
-    # Получаем все заявки пользователя
     applications = await get_applications_by_user_id(user.id)
     faculty_names = []
     for app in applications:
@@ -25,8 +24,8 @@ async def show_profile(message: Message):
         f"👤 Ваш профиль:\n\n"
         f"Имя: {user.first_name or '-'}\n"
         f"Фамилия: {user.last_name or '-'}\n"
-        f"E-mail: {user.email or '-'}\n"
         f"Телефон: {user.phone or '-'}\n"
+        f"E-mail: {user.email or '-'}\n"
         f"Роль: {user.role or '-'}\n"
         f"Факультет(ы): {faculties_text}"
     )
